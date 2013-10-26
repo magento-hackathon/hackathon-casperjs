@@ -1,6 +1,17 @@
-// Urls
+// Configuration and some usefull methods
+
+// URLS
 var url = casper.cli.get("url");
+if (!/\/$/.test(url)) {
+    // We haven't trailing slash: add it
+    url = url + '/';
+}
+
 var secure_url = url;
+if (!/\/$/.test(secure_url)) {
+    // We haven't trailing slash: add it
+    secure_url = secure_url + '/';
+}
 
 // Utils
 var utils = require('utils');
