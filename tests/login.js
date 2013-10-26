@@ -1,4 +1,4 @@
-casper.test.begin('Homepage', function suite(test) {
+casper.test.begin('Customer login', function suite(test) {
 
     // Start page
     casper.start(url, function () {
