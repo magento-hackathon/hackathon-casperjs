@@ -119,7 +119,15 @@ var captures_counter = 0;
 casper.capturePage = function (step) {
     var directory = 'captures/' + casper.test.currentSuite.name;
     if (captures_counter > 0) {
-        casper.capture(directory + '/step-' + captures_counter + '.jpg');
+        var previous = directory + '/step-' + (captures_counter-1) + '.jpg';
+        var current = directory + '/step-' + captures_counter + '.jpg';
+        casper.capture(current);
+
+        // If previous is same as current, remove current
+        if (fs.isFile(previous) && fs.read(current) === fs.read(previous)) {
+            fs.remove(current);
+            captures_counter--;
+        }
     }
     captures_counter++;
 };
