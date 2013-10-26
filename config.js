@@ -36,3 +36,9 @@ casper.test.tearDown(function () {
     casper.page.clearCookies();
 });
 
+
+// Print the current page title
+casper.printTitle = function () {
+    this.echo('### ' + casper.getTitle() + ' ###', 'INFO_BAR');
+};
+
