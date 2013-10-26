@@ -58,6 +58,10 @@ if (undefined === secure_url) {
     secure_url = secure_url + '/';
 }
 
+// Done for the test file
+// ----------------------------------------------------------------------------
+casper.test.done();
+
 /**
  * Tear down and set up
  * ----------------------------------------------------------------------------
@@ -114,7 +118,3 @@ casper.capturePage = function (step) {
     }
     captures_counter++;
 };
-
-// Done.
-// ----------------------------------------------------------------------------
-casper.test.done();
