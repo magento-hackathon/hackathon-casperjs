@@ -1,6 +1,48 @@
 // Configuration and some usefull methods
 
-// URLS
+/**
+ * Debug
+ * ----------------------------------------------------------------------------
+ */
+casper.options.verbose = true;
+casper.options.logLevel = 'debug';
+
+/**
+ * The view
+ * ----------------------------------------------------------------------------
+ */
+
+// The viewport size
+casper.options.viewportSize = {
+    width: 1024,
+    height: 768
+};
+
+/**
+ * Login credentials
+ * ----------------------------------------------------------------------------
+ */
+var login_user_firstname    = 'Firstname';
+var login_user_lastname     = 'Lastname';
+var login_user_username     = 'email@example.com';
+var login_user_password     = 'password';
+var login_user_password_bad = "badpassword";
+
+var login_admin_username     = 'admin';
+var login_admin_password     = 'test1234';
+var login_admin_password_bad = "badpassword";
+
+/**
+ * Utils & XPath
+ * ----------------------------------------------------------------------------
+ */
+var utils   = require('utils');
+var x       = casper.selectXPath;
+
+/**
+ * URLs
+ * ----------------------------------------------------------------------------
+ */
 var url = casper.cli.get("url");
 if (!/\/$/.test(url)) {
     // We haven't trailing slash: add it
@@ -16,44 +58,46 @@ if (undefined === secure_url) {
     secure_url = secure_url + '/';
 }
 
-// Utils
-var utils = require('utils');
+/**
+ * Tear down and set up
+ * ----------------------------------------------------------------------------
+ */
 
-// Login credentials
-var login_user_firstname    = 'Firstname';
-var login_user_lastname     = 'Lastname';
-var login_user_username     = 'email@example.com';
-var login_user_password     = 'password';
-var login_user_password_bad = "badpassword";
+// Tear down:
+// - clear cookies
+// - reset captures counter
+casper.test.tearDown(function () {
 
-var login_admin_username     = 'admin';
-var login_admin_password     = 'test1234';
-var login_admin_password_bad = "badpassword";
+    // Clear cookies
+    casper.clearCookies();
 
-var counter = 0;
+    // Reset captures counter
+    captures_counter = 0;
+});
 
+// Set up: nothing
+casper.test.setUp(function () {});
 
-// Casper config
-casper.options.viewportSize = {
-    width: 1024,
-    height: 768
-};
+/**
+ * Steps
+ * ----------------------------------------------------------------------------
+ */
 
-// Debug options
-casper.options.verbose = true;
-casper.options.logLevel = 'debug';
+// On step start
+casper.on("step.start", function() {
+    casper.capturePage();
+});
 
-// Test is done for this config file :')
-casper.test.done();
+/**
+ * Tools and cool methods :')
+ * ----------------------------------------------------------------------------
+ */
 
-// Tear down: clear cookies
+// Clear cookies
 casper.clearCookies = function () {
-    casper.echo("Clear cookies");
+    casper.test.info("Clear cookies");
     casper.page.clearCookies();
 };
-casper.test.tearDown(function () {
-    casper.clearCookies();
-});
 
 
 // Print the current page title
@@ -61,8 +105,16 @@ casper.printTitle = function () {
     this.echo('### ' + casper.getTitle() + ' ###', 'INFO_BAR');
 };
 
-casper.on("step.start", function(step) {
-    // currentTestFile  name
-    counter++;
-    casper.capture('test-caputure' + counter + '.jpg');
-});
+// Capture the current test page
+var captures_counter = 0;
+casper.capturePage = function (step) {
+    var directory = 'captures/' + casper.test.currentSuite.name;
+    if (captures_counter > 0) {
+        casper.capture(directory + '/step-' + captures_counter + '.jpg');
+    }
+    captures_counter++;
+};
+
+// Done.
+// ----------------------------------------------------------------------------
+casper.test.done();
