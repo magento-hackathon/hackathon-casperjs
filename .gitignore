@@ -1,1 +1,6 @@
+# Capture files
 *.png
+*.jpg
+
+# OSX
+.DS_Store
