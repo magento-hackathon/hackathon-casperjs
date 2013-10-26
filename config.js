@@ -45,9 +45,12 @@ casper.options.logLevel = 'debug';
 casper.test.done();
 
 // Tear down: clear cookies
-casper.test.tearDown(function () {
+casper.clearCookies = function () {
     casper.echo("Clear cookies");
     casper.page.clearCookies();
+};
+casper.test.tearDown(function () {
+    casper.clearCookies();
 });
 
 
