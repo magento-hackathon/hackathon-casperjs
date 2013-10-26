@@ -14,10 +14,21 @@ casper.test.begin('Category Level 1', function suite(test) {
 
         // Main categories links exists?
         test.assertExists('#nav a.level-top[href="'+ url + href +'"]');
+
+        // Move the mouse on the link
+        this.mouse.move('#nav a.level-top');
+
+        // Wait the submenu
+        this.waitForSelector('#nav .nav-1 ul.shown-sub', function () {
+            test.assertExists('#nav .nav-1 ul.shown-sub');
+
+            // Click the link
+            this.click('#nav .nav-1 a.level-top');
+        });
     })
 
     // Then go to the category's page
-    .thenClick('#nav a.level-top', function () {
+    .then(function () {
 
         this.printTitle();
 
