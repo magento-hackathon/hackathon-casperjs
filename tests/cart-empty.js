@@ -33,6 +33,17 @@ casper.test.begin('Empty cart', function suite(test) {
 
         // Get the URL of the first link in the menu and compare it with the url
         test.assertUrlMatch(url + cart_href);
+
+        // Is the link to continue shopping here?
+        test.assertExists('.cart-empty > p > a[href="' + url + '"]');
+    })
+
+    .thenClick('.cart-empty > p > a[href="' + url + '"]', function () {
+
+        this.printTitle();
+
+        // We are on the homepage
+        test.assertExists('body.cms-index-index');
     })
 
     .run(function () {
