@@ -26,9 +26,11 @@ var login_user_username     = 'email@example.com';
 var login_user_password     = 'password';
 var login_user_password_bad = "badpassword";
 
-var login_admin_username = 'admin';
-var login_admin_password = 'test1234';
+var login_admin_username     = 'admin';
+var login_admin_password     = 'test1234';
 var login_admin_password_bad = "badpassword";
+
+var counter = 0;
 
 
 // Casper config
@@ -59,3 +61,8 @@ casper.printTitle = function () {
     this.echo('### ' + casper.getTitle() + ' ###', 'INFO_BAR');
 };
 
+casper.on("step.start", function(step) {
+    // currentTestFile  name
+    counter++;
+    casper.capture('test-caputure' + counter + '.jpg');
+});
