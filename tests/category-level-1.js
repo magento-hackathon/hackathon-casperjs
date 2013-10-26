@@ -1,3 +1,7 @@
+// The HREF of the first category level 1
+var href = 'furniture.html';
+
+// The test
 casper.test.begin('Category Level 1', function suite(test) {
 
     // Start on the homepage
@@ -9,7 +13,7 @@ casper.test.begin('Category Level 1', function suite(test) {
         test.assertExists('#nav');
 
         // Main categories links exists?
-        test.assertExists('#nav a.level-top');
+        test.assertExists('#nav a.level-top[href="'+ url + href +'"]');
     })
 
     // Then go to the category's page
@@ -21,10 +25,7 @@ casper.test.begin('Category Level 1', function suite(test) {
         test.assertExists('body.catalog-category-view');
 
         // Get the URL of the first link in the menu and compare it with the url
-        var href = this.evaluate(function () {
-            return document.querySelector('#nav a.level-top').href;
-        });
-        test.assertUrlMatch(href);
+        test.assertUrlMatch(url + href);
 
         // Products list exist?
         test.assertExists('.category-products');
@@ -34,4 +35,3 @@ casper.test.begin('Category Level 1', function suite(test) {
         test.done();
     });
 });
-
