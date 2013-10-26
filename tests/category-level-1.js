@@ -32,6 +32,9 @@ casper.test.begin('Category Level 1', function suite(test) {
 
         // Products list exist?
         test.assertExists('.category-products');
+
+        // Menu link is active?
+        test.assertExists('#nav li.level-top.nav-1.active > a');
     })
 
     .run(function () {
