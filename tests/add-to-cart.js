@@ -1,7 +1,7 @@
 casper.test.begin('Add To Cart', function suite(test) {
 
-    // Start page
-    casper.start(url + 'apparel.html', function () {
+        // Start page
+        casper.start(url + 'apparel.html', function () {
 
         this.printTitle();
 
@@ -18,7 +18,7 @@ casper.test.begin('Add To Cart', function suite(test) {
 
     })
 
-    .then(function() {
+    .waitForUrl(url + 'coalesce-functioning-on-impatience-t-shirt.html', function() {
 
         this.printTitle();
 
@@ -36,14 +36,13 @@ casper.test.begin('Add To Cart', function suite(test) {
 
     })
 
-    .then(function() {
+    .waitForUrl(url + 'checkout/cart', function() {
 
         this.printTitle();
 
         test.assertUrlMatch(url + 'checkout/cart');
 
     })
-
     .run(function () {
         test.done();
     });
