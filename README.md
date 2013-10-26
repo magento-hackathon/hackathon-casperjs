@@ -1,2 +1,1 @@
-hackathon-casperjs
-==================
+# Frontend tests on Magento with CasperJS
