@@ -1,11 +1,15 @@
 // Configuration and some usefull methods
 
 /**
- * Debug
+ * Debug/Verbose
  * ----------------------------------------------------------------------------
  */
-casper.options.verbose = true;
-casper.options.logLevel = 'debug';
+var debug_mode = !!casper.cli.get('verbose');
+if (debug_mode) {
+    debug_mode = true;
+    casper.options.verbose = true;
+    casper.options.logLevel = 'debug';
+}
 
 /**
  * The view
