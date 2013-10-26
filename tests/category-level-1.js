@@ -27,6 +27,9 @@ casper.test.begin('Category Level 1', function suite(test) {
         // Get the URL of the first link in the menu and compare it with the url
         test.assertUrlMatch(url + href);
 
+        // Test title
+        test.assertTitle('Furniture');
+
         // Products list exist?
         test.assertExists('.category-products');
     })
