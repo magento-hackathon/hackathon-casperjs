@@ -37,11 +37,12 @@ var login_admin_password     = 'test1234';
 var login_admin_password_bad = "badpassword";
 
 /**
- * Utils & XPath
+ * Utils, XPath, FileSystem
  * ----------------------------------------------------------------------------
  */
 var utils   = require('utils');
 var x       = casper.selectXPath;
+var fs      = require('fs');
 
 /**
  * URLs
