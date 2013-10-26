@@ -7,8 +7,11 @@ if (!/\/$/.test(url)) {
     url = url + '/';
 }
 
-var secure_url = url;
-if (!/\/$/.test(secure_url)) {
+var secure_url = casper.cli.get('secure_url');
+if (undefined === secure_url) {
+    // Secure URL isn't defined, we get the unsecure one instead
+    secure_url = url;
+} else if (!/\/$/.test(secure_url)) {
     // We haven't trailing slash: add it
     secure_url = secure_url + '/';
 }
