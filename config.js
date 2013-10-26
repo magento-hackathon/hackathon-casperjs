@@ -6,10 +6,11 @@ var secure_url = url;
 var utils = require('utils');
 
 // Login credentials
-var login_user_username = 'email@example.com';
-var login_user_password = 'password';
+var login_user_firstname    = 'Firstname';
+var login_user_lastname     = 'Lastname';
+var login_user_username     = 'email@example.com';
+var login_user_password     = 'password';
 var login_user_password_bad = "badpassword";
-
 
 var login_admin_username = 'admin';
 var login_admin_password = 'test1234';
