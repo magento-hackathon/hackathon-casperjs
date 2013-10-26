@@ -6,9 +6,15 @@ var secure_url = url;
 var utils = require('utils');
 
 // Login credentials
-var login_username = "member@test.com";
-var login_password = "password";
-var login_password_bad = "badpassword";
+var login_user_username = 'email@example.com';
+var login_user_password = 'password';
+var login_user_password_bad = "badpassword";
+
+
+var login_admin_username = 'admin';
+var login_admin_password = 'test1234';
+var login_admin_password_bad = "badpassword";
+
 
 // Casper config
 casper.options.viewportSize = {
@@ -24,7 +30,7 @@ casper.options.logLevel = 'debug';
 casper.test.done();
 
 // Tear down: clear cookies
-casper.test.tearDown(function() {
+casper.test.tearDown(function () {
     casper.echo("Clear cookies");
     casper.page.clearCookies();
 });
