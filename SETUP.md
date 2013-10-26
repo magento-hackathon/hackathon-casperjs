@@ -3,11 +3,11 @@
 ## Overview
 
 ## Preparation / Installation
-Before you can begin with testing your application, you need to install the required packages. In this case phantom.js and casper.js
+Before you can begin with testing your application, you need to install the required packages. In this case phantom.js and casper.js.
 
 ### PhantomJS
 
-You can download the most stable release at <http://phantomjs.org/download.html>. Download and extract it on your webserver. For example you can extract it in /opt. 
+You can download the most stable release at <http://phantomjs.org/download.html>. Download and extract it on your webserver. For example you can extract it in `/opt`.
 	
 	your@machine:/opt/phantomjs-1.9.2-linux-x86_64$ ls
 	bin  ChangeLog  examples  LICENSE.BSD  README.md  
@@ -15,12 +15,11 @@ You can download the most stable release at <http://phantomjs.org/download.html>
 	
 After that, ensure that a proper symbolic link is set in /usr/bin (or any other directory of your choice)
 
-	your@machine:/usr/bin$ln -s /opt/n1k0-casperjs-cd1fab5/bin/casperjs casperjs
-	
-	
+	your@machine:/usr/bin$ln -s /opt/phantomjs-1.9.2-linux-x86_64/bin/phantomjs
+
 ### CasperJS
 
-CasperJS works on top of PhantomJS, so there is no need to include it as a JavaScript-Resource. Instead you can call casperjs directly as a binary. Download the most stable release at <http://casperjs.org/> and extract it on your webserver. Follow the same steps as for PhantomJS and create a symbolic link at /usr/bin.
+CasperJS works on top of PhantomJS, so there is no need to include it as a JavaScript-Resource. Instead you can call casperjs directly as a binary. Download the most stable release at <http://casperjs.org/> and extract it on your webserver. Follow the same steps as for PhantomJS and create a symbolic link at `/usr/bin`.
 
 
 ## Running
@@ -30,7 +29,7 @@ Running a casperjs testing script is very easy. Write a script
 
 Remote Debugging allows you to debug the testing script using the WebKit Inspector. This feature is only available for WebKit-based Browsers like Safari and Chrome.
 
-You can easily remote debug the scripts using the command  --remote-debugger-port=9000.
+You can easily remote debug the scripts using the command  `--remote-debugger-port=9000`.
 
 	your@machine:/casperjs --pre=config.js  --remote-debugger-port=9000 sample.js
 
@@ -44,4 +43,4 @@ Now open any webkit browser on your LOCAL machine and type in ip:port for exampl
 
 	192.168.162.134:9000
 	
-The debugger can now be run by typing in the command __run() at the console after clicking the first link on the page.
+The debugger can now be run by typing in the command `__run()` at the console after clicking the first link on the page.
