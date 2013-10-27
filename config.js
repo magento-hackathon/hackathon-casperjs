@@ -116,17 +116,22 @@ casper.printTitle = function () {
 
 // Capture the current test page
 var captures_counter = 0;
-casper.capturePage = function (step) {
+casper.capturePage = function (debug_name) {
     var directory = 'captures/' + casper.test.currentSuite.name;
     if (captures_counter > 0) {
         var previous = directory + '/step-' + (captures_counter-1) + '.jpg';
-        var current = directory + '/step-' + captures_counter + '.jpg';
+        if (debug_name) {
+            var current = directory + '/step-' + captures_counter + '-' + debug_name + '.jpg';
+        } else {
+            var current = directory + '/step-' + captures_counter + '.jpg';
+        }
         casper.capture(current);
 
-        // If previous is same as current, remove current
-        if (fs.isFile(previous) && fs.read(current) === fs.read(previous)) {
+        // If previous is same as current (and no debug_name), remove current
+        if (!debug_name && fs.isFile(previous) && fs.read(current) === fs.read(previous)) {
             fs.remove(current);
             captures_counter--;
+            casper.log('Capture removed because same as previous', 'warning');
         }
     }
     captures_counter++;
