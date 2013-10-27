@@ -54,7 +54,8 @@ casper.test.begin('Customer login', function suite(test) {
         this.printTitle();
 
         // this url will only be available when you are logged in. Otherwise you will get redirected
-        test.assertUrlMatch(url + 'customer/account/');
+        var reg = new RegExp(url + 'customer\/account\/?$');
+        test.assertUrlMatch(reg);
 
     })
 
