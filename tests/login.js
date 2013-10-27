@@ -29,10 +29,9 @@ casper.test.begin('Customer login', function suite(test) {
             'login[username]': login_user_username,
             'login[password]': login_user_password_bad
         }, true);
-
     })
 
-    .then(function() {
+    .waitForUrl(/customer\/account\/login/, function() {
 
         this.printTitle();
 
@@ -46,17 +45,16 @@ casper.test.begin('Customer login', function suite(test) {
             'login[username]': login_user_username,
             'login[password]': login_user_password
         }, true);
-
     })
 
-    .then(function() {
+    .waitForUrl(/customer\/account\/?$/, function() {
 
         this.printTitle();
 
         // this url will only be available when you are logged in. Otherwise you will get redirected
+        test.info(casper.getCurrentUrl());
         var reg = new RegExp(url + 'customer\/account\/?$');
         test.assertUrlMatch(reg);
-
     })
 
     .run(function () {
