@@ -9,8 +9,8 @@ casper.test.begin('Customer login', function suite(test) {
         test.info('Target URL: ' + url);
 
         // check that the home page has the link login
-        test.assertExists('.quick-access ul li.last a[href="' + url + 'customer/account/login/"]');
-        this.click('.quick-access ul li.last a[href="' + url + 'customer/account/login/"]');
+        test.assertExists('.quick-access ul li.last a[href="' + secure_url + 'customer/account/login/"]');
+        this.click('.quick-access ul li.last a[href="' + secure_url + 'customer/account/login/"]');
 
     })
 
@@ -37,7 +37,7 @@ casper.test.begin('Customer login', function suite(test) {
 
         // test that the current url is still the same as we do net get redirected sucessfully due to wrong credentials
         test.info('Current url: ' + this.getCurrentUrl());
-        test.assertUrlMatch(url + 'customer/account/login/');
+        test.assertUrlMatch(secure_url + 'customer/account/login/');
 
         // relogin with good credentials
         test.info('Login with valid identifiers');
@@ -53,7 +53,7 @@ casper.test.begin('Customer login', function suite(test) {
 
         // this url will only be available when you are logged in. Otherwise you will get redirected
         test.info(casper.getCurrentUrl());
-        var reg = new RegExp(url + 'customer\/account\/?$');
+        var reg = new RegExp(secure_url + 'customer\/account\/?$');
         test.assertUrlMatch(reg);
     })
 
