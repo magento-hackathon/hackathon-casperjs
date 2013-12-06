@@ -136,3 +136,14 @@ casper.capturePage = function (debug_name) {
     }
     captures_counter++;
 };
+
+// casper.login = function () {
+//     casper.log('login', 'warning');
+//     var current_url = casper.getCurrentUrl();
+//     utils.dump(current_url);
+//     casper.click('ul.links li a[href="'+url+'customer/account/login/"]');
+//     casper.fill('form#login-form', {
+//         'login[username]': login_user_username,
+//         'login[password]': login_user_password
+//     }, true);
+// };
