@@ -14,7 +14,8 @@ casper.test.begin('Homepage', function suite(test) {
 
         test.assertTitle('Home page');
         test.assertExists('.page .header-container .header h1.logo a[href="' + url + '"]');
-        test.assertExists('.box table td:first-child a[href="' + url + 'sony-vaio-vgn-txn27n-b-11-1-notebook-pc.html"]')
+        test.assertExists('.page .col2-right-layout .main .col-main .std .page-title');
+        test.assertSelectorHasText('.page .col2-right-layout .main .col-main .std .page-title', 'Home Page');
     })
 
     .run(function () {
