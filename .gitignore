@@ -1,0 +1,11 @@
+# Capture files
+/captures/*
+!/captures/.placeholder
+*.png
+*.jpg
+
+# OSX
+.DS_Store
+
+# Logs
+*.xml
