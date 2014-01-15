@@ -176,11 +176,14 @@ casper.capturePage = function (debug_name) {
         casper.capture(current);
 
         // If previous is same as current (and no debug_name), remove current
-        if (!debug_name && fs.isFile(previous) && fs.read(current) === fs.read(previous)) {
+        if (!debug_name && fs.isFile(previous) && fs.read(current) === fs.read(previous) && fs.isFile(current)) {
             fs.remove(current);
             captures_counter--;
             casper.log('Capture removed because same as previous', 'warning');
         }
+    } else {
+        // We remove the directory to cleanup
+        fs.removeTree(directory);
     }
     captures_counter++;
 };
