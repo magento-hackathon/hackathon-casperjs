@@ -84,6 +84,10 @@ if (undefined === secure_url) {
     secure_url = secure_url + '/';
 }
 
+url_customer_account_index  = secure_url + 'customer/account/';
+url_customer_account_login  = secure_url + 'customer/account/login/';
+url_customer_account_create = secure_url + 'customer/account/create/';
+
 // Done for the test file
 // ----------------------------------------------------------------------------
 casper.test.done();
