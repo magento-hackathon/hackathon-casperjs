@@ -25,6 +25,25 @@ casper.options.viewportSize = {
 };
 
 /**
+ * The HTTP responses
+ * ----------------------------------------------------------------------------
+ */
+casper.options.httpStatusHandlers = {
+    200:  function(self, resource) {
+        this.echo(resource.url + " is OK (200)", "INFO");
+    },
+    400:  function(self, resource) {
+        this.echo(resource.url + " is nok (400)", "INFO");
+    },
+    404: function(self, resource) {
+        this.echo("Resource at " + resource.url + " not found (404)", "COMMENT");
+    },
+    302: function(self, resource) {
+        this.echo(resource.url + " has been redirected (302)", "INFO");
+    }
+};
+
+/**
  * Login credentials
  * ----------------------------------------------------------------------------
  */
