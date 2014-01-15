@@ -117,8 +117,31 @@ casper.test.setUp(function () {});
  * ----------------------------------------------------------------------------
  */
 
-// On step start
-casper.on("step.start", function() {
+casper.on("load.finished", function() {
+    casper.capturePage();
+});
+
+casper.on("mouse.down", function() {
+    casper.capturePage();
+});
+
+casper.on("mouse.move", function() {
+    casper.capturePage();
+});
+
+casper.on("mouse.move", function() {
+    casper.capturePage();
+});
+
+casper.on("step.complete", function() {
+    casper.capturePage();
+});
+
+casper.on("http.status.500", function() {
+    casper.capturePage();
+});
+
+casper.on("http.status.404", function() {
     casper.capturePage();
 });
 
