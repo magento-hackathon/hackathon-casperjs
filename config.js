@@ -11,6 +11,8 @@ if (debug_mode) {
     casper.options.logLevel = 'debug';
 }
 
+var colorizer = require('colorizer').create('Colorizer');
+
 /**
  * The view
  * ----------------------------------------------------------------------------
