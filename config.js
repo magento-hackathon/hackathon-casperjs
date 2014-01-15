@@ -20,8 +20,8 @@ var colorizer = require('colorizer').create('Colorizer');
 
 // The viewport size
 casper.options.viewportSize = {
-    width: 1024,
-    height: 768
+    width: 1200,
+    height: 900
 };
 
 /**
