@@ -3,25 +3,24 @@ casper.test.begin('Customer login', function suite(test) {
     // Start page
     casper.start(url, function () {
 
-        this.printTitle();
-
-        test.info('Testing Login');
-        test.info('Target URL: ' + url);
+        test.assertHttpStatus(200);
 
         // check that the home page has the link login
-        test.assertExists('.quick-access ul li.last a[href="' + secure_url + 'customer/account/login/"]');
-        this.click('.quick-access ul li.last a[href="' + secure_url + 'customer/account/login/"]');
-
+        test.assertExists('.quick-access ul li.last a[href="' + url_customer_account_login + '"]');
     })
 
-    .then(function() {
+    .thenClick('.quick-access ul li.last a[href="' + url_customer_account_login + '"]', function() {
 
-        this.printTitle();
+        test.assertHttpStatus(200);
 
         // check that the form exists
         test.assertExists('div.input-box');
         test.assertExists('input#email');
         test.assertExists('input#pass');
+
+        // Forgot password link
+        test.assertExists('#login-form .registered-users .buttons-set a');
+        test.assertSelectorHasText('#login-form .registered-users .buttons-set a', 'Forgot Your Password?');
 
         // fill the form with wrong credentials
         test.info('Login with invalid identifiers');
@@ -33,11 +32,11 @@ casper.test.begin('Customer login', function suite(test) {
 
     .waitForUrl(/customer\/account\/login/, function() {
 
-        this.printTitle();
+        test.assertHttpStatus(200);
 
         // test that the current url is still the same as we do net get redirected sucessfully due to wrong credentials
         test.info('Current url: ' + this.getCurrentUrl());
-        test.assertUrlMatch(secure_url + 'customer/account/login/');
+        test.assertUrlMatch(url_customer_account_login);
 
         // relogin with good credentials
         test.info('Login with valid identifiers');
@@ -49,7 +48,7 @@ casper.test.begin('Customer login', function suite(test) {
 
     .waitForUrl(/customer\/account\/?$/, function() {
 
-        this.printTitle();
+        test.assertHttpStatus(200);
 
         // this url will only be available when you are logged in. Otherwise you will get redirected
         test.info(casper.getCurrentUrl());
