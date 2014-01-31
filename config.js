@@ -84,9 +84,20 @@ if (undefined === secure_url) {
     secure_url = secure_url + '/';
 }
 
+var admin_url = casper.cli.get('admin_url');
+if (undefined === admin_url) {
+    // Admin URL is secured by default, if not, specify the command line option
+    admin_url = secure_url + 'admin/';
+} else if (!/\/$/.test(admin_url)) {
+    // We haven't trailing slash: add it
+    admin_url = admin_url + '/';
+}
+
 url_customer_account_index  = secure_url + 'customer/account/';
 url_customer_account_login  = secure_url + 'customer/account/login/';
 url_customer_account_create = secure_url + 'customer/account/create/';
+
+url_checkout_cart_index = secure_url + 'checkout/cart/';
 
 // Done for the test file
 // ----------------------------------------------------------------------------
