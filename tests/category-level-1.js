@@ -7,7 +7,7 @@ casper.test.begin('Category Level 1', function suite(test) {
     // Start on the homepage
     casper.start(url, function () {
 
-        this.printTitle();
+        test.assertHttpStatus(200);
 
         // Main nav exists?
         test.assertExists('#nav');
@@ -30,7 +30,7 @@ casper.test.begin('Category Level 1', function suite(test) {
     // Then go to the category's page
     .then(function () {
 
-        this.printTitle();
+        test.assertHttpStatus(200);
 
         // Are we on a category page?
         test.assertExists('body.catalog-category-view');
