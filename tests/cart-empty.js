@@ -1,16 +1,10 @@
-// The cart HREF
-var cart_href = 'checkout/cart';
-
 // The test
 casper.test.begin('Empty cart', function suite(test) {
 
     // Start on the homepage
     casper.start(url, function () {
 
-        this.printTitle();
-
-        // Clear cookies to be sure :')
-        casper.clearCookies();
+        test.assertHttpStatus(200);
 
         // Cart link exists?
         test.assertExists('.page .header-container .header .quick-access .links li > a.top-link-cart');
@@ -19,7 +13,7 @@ casper.test.begin('Empty cart', function suite(test) {
     // Then go to the empty cart page
     .thenClick('.page .header-container .header .quick-access .links li > a.top-link-cart', function () {
 
-        this.printTitle();
+        test.assertHttpStatus(200);
 
         // Are we on the cart page?
         test.assertExists('body.checkout-cart-index');
@@ -32,7 +26,7 @@ casper.test.begin('Empty cart', function suite(test) {
         test.assertSelectorHasText('.main .col-main .page-title h1', 'Shopping Cart is Empty');
 
         // Get the URL of the first link in the menu and compare it with the url
-        test.assertUrlMatch(url + cart_href);
+        test.assertUrlMatch(url_checkout_cart_index);
 
         // Is the link to continue shopping here?
         test.assertExists('.cart-empty > p > a[href="' + url + '"]');
@@ -40,7 +34,7 @@ casper.test.begin('Empty cart', function suite(test) {
 
     .thenClick('.cart-empty > p > a[href="' + url + '"]', function () {
 
-        this.printTitle();
+        test.assertHttpStatus(200);
 
         // We are on the homepage
         test.assertExists('body.cms-index-index');
