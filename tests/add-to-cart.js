@@ -1,16 +1,11 @@
 casper.test.begin('Add To Cart', function suite(test) {
 
-        // Start page
-        casper.start(url + 'apparel.html', function () {
+    // Start page
+    casper.start(url + 'apparel.html', function () {
 
-        this.printTitle();
-
-        test.info('Testing Login');
-        test.info('Target URL: ' + url);
+        test.assertHttpStatus(200);
 
         test.assertUrlMatch(url + 'apparel.html');
-
-        // check, that the first product has a buy button
 
         // check that the home page has the link login
         test.assertExists('button.button.btn-cart:first-child');
@@ -20,7 +15,7 @@ casper.test.begin('Add To Cart', function suite(test) {
 
     .waitForUrl(url + 'coalesce-functioning-on-impatience-t-shirt.html', function() {
 
-        this.printTitle();
+        test.assertHttpStatus(200);
 
         test.assertUrlMatch(url + 'coalesce-functioning-on-impatience-t-shirt.html');
 
@@ -33,14 +28,17 @@ casper.test.begin('Add To Cart', function suite(test) {
         // check that the home page has the link login
         test.assertExists('button.button.btn-cart');
         this.click('button.button.btn-cart');
-
     })
 
-    .waitForUrl(url + 'checkout/cart', function() {
+    .waitForUrl(url_checkout_cart_index, function() {
 
-        this.printTitle();
+        test.assertHttpStatus(200);
 
-        test.assertUrlMatch(url + 'checkout/cart');
+        test.assertUrlMatch(url_checkout_cart_index);
+        test.assertExists('.messages .success-msg');
+        test.assertElementCount('#shopping-cart-table tbody tr', 1);
+        test.assertExists('.cart .totals .checkout-types li button.button');
+        test.assertExists('#discount-coupon-form');
 
     })
     .run(function () {
