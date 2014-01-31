@@ -128,7 +128,20 @@ casper.test.setUp(function () {});
  * ----------------------------------------------------------------------------
  */
 
+casper.on("started", function() {
+    casper.clearCookies();
+});
+
+casper.on("load.failed", function() {
+    casper.capturePage();
+});
+
 casper.on("load.finished", function() {
+    casper.printTitle();
+    casper.capturePage();
+});
+
+casper.on("fill", function() {
     casper.capturePage();
 });
 
@@ -148,12 +161,16 @@ casper.on("step.complete", function() {
     casper.capturePage();
 });
 
+casper.on("step.error", function() {
+    casper.capturePage('error');
+});
+
 casper.on("http.status.500", function() {
-    casper.capturePage();
+    casper.capturePage('500');
 });
 
 casper.on("http.status.404", function() {
-    casper.capturePage();
+    casper.capturePage('404');
 });
 
 /**
@@ -202,8 +219,6 @@ casper.capturePage = function (debug_name) {
 // Login the user
 casper.login = function(username, password) {
     casper.log('login', 'warning');
-    var current_url = casper.getCurrentUrl();
-    utils.dump(current_url);
     casper.open(url_customer_account_login).then(function() {
         casper.fill('form#login-form', {
             'login[username]': (username ? username : login_user_username),
