@@ -99,6 +99,11 @@ url_customer_account_create = secure_url + 'customer/account/create/';
 
 url_checkout_cart_index = secure_url + 'checkout/cart/';
 
+// Magento module
+// ----------------------------------------------------------------------------
+var mage = require('./magento');
+mage.init(url, secure_url, admin_url);
+
 // Done for the test file
 // ----------------------------------------------------------------------------
 casper.test.done();
@@ -214,19 +219,5 @@ casper.capturePage = function (debug_name) {
         fs.removeTree(directory);
     }
     captures_counter++;
-};
-
-// Login the user
-casper.login = function(username, password) {
-    casper.log('login', 'warning');
-    casper.open(url_customer_account_login).then(function() {
-        casper.fill('form#login-form', {
-            'login[username]': (username ? username : login_user_username),
-            'login[password]': (password ? password : login_user_password)
-        }, true);
-    }).waitForUrl(url_customer_account_index, function() {
-        this.capturePage();
-    });
-    return this;
 };
 
