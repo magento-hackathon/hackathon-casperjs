@@ -42,11 +42,17 @@ exports.getUrl = function (path, parameters) {
     // Defualt is unsecure url
     var new_url = url;
 
+    // Direct url?
+    var direct = false;
+
     // Process the params
     var params = [];
     if (parameters) {
         _.each(parameters, function (value, index) {
             switch (index) {
+                case '_direct':
+                    direct = true;
+                    break;
                 case '_secure':
                     // Secure URL asked
                     if (value) {
@@ -60,6 +66,12 @@ exports.getUrl = function (path, parameters) {
             }
         });
     }
+
+    // Direct url? No params.
+    if (direct) {
+        return new_url + path;
+    }
+
     var params_as_string = '';
     if (params.length) {
         params_as_string = '/' + params.join('/');
@@ -75,6 +87,17 @@ exports.getUrl = function (path, parameters) {
  */
 exports.getBaseUrl = function (secure) {
     return this.getUrl('', {_secure: !!secure});
+};
+
+/**
+ * Retrieve a "direct" url (secure or not)
+ * @param string path The URI
+ * @param bool secure TRUE if secure url
+ * @return string
+ */
+exports.getDirectUrl = function (path, secure)
+{
+    return this.getUrl(path, {_direct:true, _secure:!!secure});
 };
 
 /**
