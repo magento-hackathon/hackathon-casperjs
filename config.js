@@ -101,7 +101,7 @@ url_checkout_cart_index = secure_url + 'checkout/cart/';
 
 // Magento module
 // ----------------------------------------------------------------------------
-var mage = require('./magento');
+var mage = require('../modules/magento');
 mage.init(url, secure_url, admin_url);
 
 // Done for the test file
