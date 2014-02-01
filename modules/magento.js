@@ -74,11 +74,15 @@ exports.getUrl = function (path, parameters) {
 
     var params_as_string = '';
     if (params.length) {
-        params_as_string = '/' + params.join('/');
+        params_as_string = params.join('/');
     }
 
     // Return the URL
-    return new_url + path + params_as_string;
+    var begin = new_url + path;
+    if (!/\/$/.test(begin)) {
+        begin += '/';
+    }
+    return begin + params_as_string;
 };
 
 /**
