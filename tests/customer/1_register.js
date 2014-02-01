@@ -39,8 +39,8 @@ casper.test.begin('Register new customer', function suite(test) {
             'firstname': login_user_firstname,
             'lastname': login_user_lastname,
             'email': login_user_username,
-            'password': login_admin_password,
-            'confirmation': login_admin_password
+            'password': login_user_password,
+            'confirmation': login_user_password
         }, true);
         this.test.pass('Register form fields was filled');
     })
