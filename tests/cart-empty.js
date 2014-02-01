@@ -2,7 +2,7 @@
 casper.test.begin('Empty cart', function suite(test) {
 
     // Start on the homepage
-    casper.start(url, function () {
+    casper.start(mage.getBaseUrl(), function () {
 
         test.assertHttpStatus(200);
 
@@ -26,13 +26,13 @@ casper.test.begin('Empty cart', function suite(test) {
         test.assertSelectorHasText('.main .col-main .page-title h1', 'Shopping Cart is Empty');
 
         // Get the URL of the first link in the menu and compare it with the url
-        test.assertUrlMatch(url_checkout_cart_index);
+        test.assertUrlMatch(mage.getUrl('checkout/cart'));
 
         // Is the link to continue shopping here?
-        test.assertExists('.cart-empty > p > a[href="' + url + '"]');
+        test.assertExists('.cart-empty > p > a[href="' + mage.getBaseUrl() + '"]');
     })
 
-    .thenClick('.cart-empty > p > a[href="' + url + '"]', function () {
+    .thenClick('.cart-empty > p > a[href="' + mage.getBaseUrl() + '"]', function () {
 
         test.assertHttpStatus(200);
 

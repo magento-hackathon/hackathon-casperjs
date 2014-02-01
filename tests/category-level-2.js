@@ -5,7 +5,7 @@ var href = 'electronics/cell-phones.html';
 casper.test.begin('Category Level 2', function suite(test) {
 
     // Start on the homepage
-    casper.start(url, function () {
+    casper.start(mage.getBaseUrl(), function () {
 
         test.assertHttpStatus(200);
 
@@ -25,12 +25,12 @@ casper.test.begin('Category Level 2', function suite(test) {
         this.waitForSelector('#nav .nav-2 ul.shown-sub', function () {
 
             // Move over the good category link
-            this.mouse.move('#nav .nav-2 ul.shown-sub > li > a[href="' + url + href + '"]');
+            this.mouse.move('#nav .nav-2 ul.shown-sub > li > a[href="' + mage.getDirectUrl(href) + '"]');
 
             // Wait the sub-menu
-            this.waitForSelector('#nav .nav-2 ul.shown-sub > li > a[href="' + url + href + '"].over', function () {
+            this.waitForSelector('#nav .nav-2 ul.shown-sub > li > a[href="' + mage.getDirectUrl(href) + '"].over', function () {
                 // Click on the link
-                this.click('#nav .nav-2 ul.shown-sub > li > a[href="' + url + href + '"]');
+                this.click('#nav .nav-2 ul.shown-sub > li > a[href="' + mage.getDirectUrl(href) + '"]');
             });
         });
 
@@ -45,7 +45,7 @@ casper.test.begin('Category Level 2', function suite(test) {
         test.assertExists('body.catalog-category-view');
 
         // Get the URL of the first link in the menu and compare it with the url
-        test.assertUrlMatch(url + href);
+        test.assertUrlMatch(mage.getDirectUrl(href));
 
         // Test title
         test.assertTitle('Cell Phones - Electronics');

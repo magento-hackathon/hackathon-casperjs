@@ -1,7 +1,7 @@
 casper.test.begin('404 Not Found', function suite(test) {
 
     // Start page
-    casper.start(url + 'not-found', function () {
+    casper.start(mage.getUrl('not-found'), function () {
 
         test.assertHttpStatus(404);
 

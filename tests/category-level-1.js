@@ -5,7 +5,7 @@ var href = 'furniture.html';
 casper.test.begin('Category Level 1', function suite(test) {
 
     // Start on the homepage
-    casper.start(url, function () {
+    casper.start(mage.getBaseUrl(), function () {
 
         test.assertHttpStatus(200);
 
@@ -13,7 +13,7 @@ casper.test.begin('Category Level 1', function suite(test) {
         test.assertExists('#nav');
 
         // Main categories links exists?
-        test.assertExists('#nav a.level-top[href="'+ url + href +'"]');
+        test.assertExists('#nav a.level-top[href="'+ mage.getDirectUrl(href) +'"]');
 
         // Move the mouse on the link
         this.mouse.move('#nav a.level-top');
@@ -36,7 +36,7 @@ casper.test.begin('Category Level 1', function suite(test) {
         test.assertExists('body.catalog-category-view');
 
         // Get the URL of the first link in the menu and compare it with the url
-        test.assertUrlMatch(url + href);
+        test.assertUrlMatch(mage.getDirectUrl(href));
 
         // Test title
         test.assertTitle('Furniture');

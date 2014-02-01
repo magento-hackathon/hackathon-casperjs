@@ -6,7 +6,7 @@ var href = 'apparel/shoes/mens.html';
 casper.test.begin('Category Level 3', function suite(test) {
 
     // Start on the homepage
-    casper.start(url, function () {
+    casper.start(mage.getBaseUrl(), function () {
 
         test.assertHttpStatus(200);
 
@@ -26,13 +26,13 @@ casper.test.begin('Category Level 3', function suite(test) {
         this.waitForSelector('#nav .nav-3 ul.shown-sub', function () {
 
             // Move over the good category link
-            this.mouse.move('#nav .nav-3 ul.shown-sub > li.parent > a[href="' + url + href_level2 + '"]');
+            this.mouse.move('#nav .nav-3 ul.shown-sub > li.parent > a[href="' + mage.getDirectUrl(href_level2) + '"]');
 
             // Wait the sub-menu
             this.waitForSelector('#nav .nav-3 ul.shown-sub li.parent ul.shown-sub', function () {
 
                 // Move the mouse on the third link
-                this.click('#nav .nav-3 ul.shown-sub li.parent ul.shown-sub > li > a[href="' + url + href + '"]');
+                this.click('#nav .nav-3 ul.shown-sub li.parent ul.shown-sub > li > a[href="' + mage.getDirectUrl(href) + '"]');
             });
         });
 
@@ -47,7 +47,7 @@ casper.test.begin('Category Level 3', function suite(test) {
         test.assertExists('body.catalog-category-view');
 
         // Get the URL of the first link in the menu and compare it with the url
-        test.assertUrlMatch(url + href);
+        test.assertUrlMatch(mage.getDirectUrl(href));
 
         // Test title
         test.assertTitle('Mens - Shoes - Apparel');

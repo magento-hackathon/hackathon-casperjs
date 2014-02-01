@@ -1,16 +1,16 @@
 casper.test.begin('Register new customer', function suite(test) {
 
     // Start page
-    casper.start(url, function () {
+    casper.start(mage.getBaseUrl(), function () {
 
         test.assertHttpStatus(200);
 
         this.test.pass('Home was loaded');
         // check that the home page has the link login
-        test.assertExists('.quick-access ul li.last a[href="' + url_customer_account_login + '"]');
+        test.assertExists('.quick-access ul li.last a[href="' + mage.getUrl('customer/account/login') + '"]');
     })
 
-    .thenClick('.quick-access ul li.last a[href="' + url_customer_account_login + '"]', function() {
+    .thenClick('.quick-access ul li.last a[href="' + mage.getUrl('customer/account/login') + '"]', function() {
 
         test.assertHttpStatus(200);
         this.test.pass('Login page was loaded');
@@ -45,7 +45,7 @@ casper.test.begin('Register new customer', function suite(test) {
         this.test.pass('Register form fields was filled');
     })
 
-    .waitForUrl(url + 'customer/account/index/', function() {
+    .waitForUrl(mage.getUrl('customer/account/index'), function() {
         this.test.assertTextExists('Hello, ' + login_user_firstname + ' ' + login_user_lastname + '!', 'page body contains "Hello, ' + login_user_firstname + ' ' + login_user_lastname + '!"');
         this.test.info('Current location is ' + this.getCurrentUrl());
         this.test.pass('Dashboard in');

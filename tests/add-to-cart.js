@@ -1,11 +1,11 @@
 casper.test.begin('Add To Cart', function suite(test) {
 
     // Start page
-    casper.start(url + 'apparel.html', function () {
+    casper.start(mage.getDirectUrl('apparel.html'), function () {
 
         test.assertHttpStatus(200);
 
-        test.assertUrlMatch(url + 'apparel.html');
+        test.assertUrlMatch(mage.getDirectUrl('apparel.html'));
 
         // check that the home page has the link login
         test.assertExists('button.button.btn-cart:first-child');
@@ -13,11 +13,11 @@ casper.test.begin('Add To Cart', function suite(test) {
 
     })
 
-    .waitForUrl(url + 'coalesce-functioning-on-impatience-t-shirt.html', function() {
+    .waitForUrl(mage.getDirectUrl('coalesce-functioning-on-impatience-t-shirt.html'), function() {
 
         test.assertHttpStatus(200);
 
-        test.assertUrlMatch(url + 'coalesce-functioning-on-impatience-t-shirt.html');
+        test.assertUrlMatch(mage.getDirectUrl('coalesce-functioning-on-impatience-t-shirt.html'));
 
         this.evaluate(function() {
             var elmt = document.querySelector('select#attribute525');
@@ -30,11 +30,11 @@ casper.test.begin('Add To Cart', function suite(test) {
         this.click('button.button.btn-cart');
     })
 
-    .waitForUrl(url_checkout_cart_index, function() {
+    .waitForUrl(mage.getUrl('checkout/cart'), function() {
 
         test.assertHttpStatus(200);
 
-        test.assertUrlMatch(url_checkout_cart_index);
+        test.assertUrlMatch(mage.getUrl('checkout/cart'));
         test.assertExists('.messages .success-msg');
         test.assertElementCount('#shopping-cart-table tbody tr', 1);
         test.assertExists('.cart .totals .checkout-types li button.button');

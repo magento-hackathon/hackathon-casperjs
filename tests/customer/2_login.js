@@ -1,15 +1,15 @@
 casper.test.begin('Customer login', function suite(test) {
 
     // Start page
-    casper.start(url, function () {
+    casper.start(mage.getBaseUrl(), function () {
 
         test.assertHttpStatus(200);
 
         // check that the home page has the link login
-        test.assertExists('.quick-access ul li.last a[href="' + url_customer_account_login + '"]');
+        test.assertExists('.quick-access ul li.last a[href="' + mage.getUrl('customer/account/login') + '"]');
     })
 
-    .thenClick('.quick-access ul li.last a[href="' + url_customer_account_login + '"]', function() {
+    .thenClick('.quick-access ul li.last a[href="' + mage.getUrl('customer/account/login') + '"]', function() {
 
         test.assertHttpStatus(200);
 
@@ -36,7 +36,7 @@ casper.test.begin('Customer login', function suite(test) {
 
         // test that the current url is still the same as we do net get redirected sucessfully due to wrong credentials
         test.info('Current url: ' + this.getCurrentUrl());
-        test.assertUrlMatch(url_customer_account_login);
+        test.assertUrlMatch(mage.getUrl('customer/account/login'));
 
         // relogin with good credentials
         test.info('Login with valid identifiers');
@@ -46,7 +46,7 @@ casper.test.begin('Customer login', function suite(test) {
         }, true);
     })
 
-    .waitForUrl(/customer\/account\/index/, function() {
+    .waitForUrl(/customer\/account/, function() {
 
         test.assertHttpStatus(200);
 
