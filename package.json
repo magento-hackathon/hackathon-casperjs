@@ -1,0 +1,28 @@
+{
+  "name": "hackathon-casperjs",
+  "version": "0.0.0",
+  "description": "Frontend tests on Magento with CasperJS",
+  "dependencies": {
+    "underscore": "^1.5.2",
+    "casperjs": "^1.1.0-beta3",
+    "phantomjs": "^1.9.7-1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/magento-hackathon/hackathon-casperjs.git"
+  },
+  "keywords": [
+    "magento",
+    "casperjs"
+  ],
+  "author": "Jacques Bodin-Hullin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/magento-hackathon/hackathon-casperjs/issues"
+  },
+  "homepage": "https://github.com/magento-hackathon/hackathon-casperjs"
+}
