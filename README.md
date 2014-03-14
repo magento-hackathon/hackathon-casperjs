@@ -11,6 +11,10 @@ Just run the command below:
 
     casperjs --pre=config.js test --url="http://my-store.com/" tests/
 
+or for simple tests with default values
+
+    npm test --url="http://my-store.com/"
+
 You just need to replace the `http://my-store.com` with your own store's URL.
 
 ### Secure URL
