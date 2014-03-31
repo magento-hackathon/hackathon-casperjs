@@ -53,6 +53,15 @@ var login_user_username     = 'email@example.com';
 var login_user_password     = 'password';
 var login_user_password_bad = "badpassword";
 
+var user_address_company    = 'Necrosoft';
+var user_address_street     = '1156 High Street';
+var user_address_city       = 'Santa Cruz';
+var user_address_region     = 'California';
+var user_address_postcode   = '95064';
+var user_address_country    = 'United States';
+var user_address_telephone  = '12345678';
+var user_address_fax        = '12345678';
+
 var login_admin_username     = 'admin';
 var login_admin_password     = 'test1234';
 var login_admin_password_bad = "badpassword";
