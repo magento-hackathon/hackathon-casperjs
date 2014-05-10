@@ -17,15 +17,24 @@ or for simple tests with default values
 
 You just need to replace the `http://my-store.com` with your own store's URL.
 
+If you don't have URL rewrites enabled, don't forget to add index.php to your URL. Also note that the sample tests require you to have Magento sample data imported, because some CSS classes are not present in a blank installation.
+
 ### Secure URL
 
 If you want to set a different URL used for HTTPS please add the url like that:
+
 
     --secure_url="https://my-store.com/"
 
 Maybe you're using a self signed certificate. In this case add the following parameter:
 
     --ignore-ssl-errors=yes
+
+### Admin URL
+
+If you're using a different admin path, you can specify it like so:
+
+    --admin_url="https://my-store.com/index.php/secretpath/"
 
 ### Debug
 

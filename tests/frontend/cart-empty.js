@@ -1,4 +1,6 @@
-// The test
+// This test can be used as a basis for creating more advanced tests for the empty cart page
+// if you e.g. want to test the existence of a  CMS block or product recommendations, etc.
+
 casper.test.begin('Empty cart', function suite(test) {
 
     // Start on the homepage
