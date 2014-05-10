@@ -1,5 +1,11 @@
 # Frontend tests on Magento with CasperJS
 
+## Introduction
+
+The tests located in the tests directory work with a default Magento CE installation with sample data installed. The idea is that if you have a custom project you will duplicate those tests in a separate directory and make the necessary adjustments so that the tests pass with your custom theme, extensions and custom modifications.
+
+If you develop new generic tests, please contribute them back to this project by either coming to a Magento Hackathon and requesting write access to this repository or by forking it and submitting a pull request.
+
 ## Prerequisites
 
 *   Install [PhantomJS][phantomjs]
@@ -17,7 +23,7 @@ or for simple tests with default values
 
 You just need to replace the `http://my-store.com` with your own store's URL.
 
-If you don't have URL rewrites enabled, don't forget to add index.php to your URL. Also note that the sample tests require you to have Magento sample data imported, because some CSS classes are not present in a blank installation.
+If you don't have URL rewrites enabled, don't forget to add index.php to your URL.
 
 ### Secure URL
 
