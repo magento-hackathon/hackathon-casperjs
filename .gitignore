@@ -1,14 +1,3 @@
-# Node modules
-node_modules
-
-# Capture files
+/node_modules
 /captures/*
 !/captures/.placeholder
-*.png
-*.jpg
-
-# OSX
-.DS_Store
-
-# Logs
-*.xml
