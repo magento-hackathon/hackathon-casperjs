@@ -68,6 +68,17 @@ Now open any webkit browser on your LOCAL machine and type in ip:port for exampl
 
 The debugger can now be run by typing in the command `__run()` at the console after clicking the first link on the page.
 
+### Troubleshooting
+
+If you get this error
+
+    CasperError: Can't find module underscore
+
+you need to run
+
+    npm install
+
+which will install the required node underscore module.
 
 [casperjs]: http://casperjs.org
 [phantomjs]: http://phantomjs.org
